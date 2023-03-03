@@ -104,5 +104,6 @@ class ChangeTextBehaviorKtTest {
         val TextInputField: Matcher<View> by lazy { withId(R.id.editTextUserInput) }
         val ChangeTextBtn: Matcher<View> by lazy { withId(R.id.changeTextBt) }
         val TextViewField: Matcher<View> by lazy { withId(R.id.textToBeChanged) }
+
     }
 }
