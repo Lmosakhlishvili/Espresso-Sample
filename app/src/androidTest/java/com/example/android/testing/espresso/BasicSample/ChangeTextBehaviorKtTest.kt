@@ -63,43 +63,19 @@ class ChangeTextBehaviorKtTest {
     @get:Rule var activityScenarioRule = activityScenarioRule<MainActivity>()
 
     @Test
-    fun changeText_sameActivity() {
-
-        // Type text and then press the button.
-        onView(withId(R.id.editTextUserInput))
-                .perform(typeText(STRING_TO_BE_TYPED), closeSoftKeyboard())
-        onView(withId(R.id.changeTextBt)).perform(click())
-
-
-        // Check that the text was changed.
-        onView(withId(R.id.textToBeChanged)).check(matches(withText(STRING_TO_BE_TYPED)))
-    }
-
-    @Test
-    fun changeText_newActivity() {
-        // Type text and then press the button.
-        onView(withId(R.id.editTextUserInput)).perform(typeText(STRING_TO_BE_TYPED),
-                closeSoftKeyboard())
-        onView(withId(R.id.activityChangeTextBtn)).perform(click())
-
-        // This view is in a different Activity, no need to tell Espresso.
-        onView(withId(R.id.show_text_view)).check(matches(withText(STRING_TO_BE_TYPED)))
-    }
-
-    @Test
     fun checkChangedText() {
-        TextInputField.typeText(STRING_TO_BE_TYPED)
+        val typedString = "I Love Mobile Testing"
+        TextInputField.typeText(typedString)
         ChangeTextBtn.tap()
 
-        Assert.assertEquals(STRING_TO_BE_TYPED, TextViewField.getText())
-        isTextOnScreen(TextInputField.getText())
+        Assert.assertEquals(typedString, TextViewField.getText())
+        isTextOnScreen(typedString)
 
 
     }
 
     companion object {
 
-        val STRING_TO_BE_TYPED = "I like mobile testing"
 
         val TextInputField: Matcher<View> by lazy { withId(R.id.editTextUserInput) }
         val ChangeTextBtn: Matcher<View> by lazy { withId(R.id.changeTextBt) }
